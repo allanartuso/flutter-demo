@@ -1,29 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/counter.component.dart';
+import 'package:go_router/go_router.dart';
+import '../libs/features/home/home-details.dart';
+import '../libs/features/home/home.dart';
+import '../libs/features/settings/settings.dart';
+import '../libs/features/user/user-details.dart';
+import '../libs/features/user/user.dart';
+import 'main.dart';
+import 'not-found.dart';
 
-import 'home.dart';
-
-class RouteNames {
-  static const String counter = 'counter';
-  static const String homeScreen = 'homeScreen';
+class Routes {
+  static const root = '/';
+  static const homeNamedPage = '/home';
+  static const homeDetailsNamedPage = 'details';
+  static const profileNamedPage = '/profile';
+  static const profileDetailsNamedPage = 'details';
+  static const settingsNamedPage = '/settings';
+  //static profileNamedPage([String? name]) => '/${name ?? ':profile'}';
+  static Widget errorWidget(BuildContext context, GoRouterState state) =>
+      const NotFoundScreen();
 }
 
-class RouterClass {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case RouteNames.counter:
-        return MaterialPageRoute(
-            builder: (_) => const CounterComponent(
-                  counter: 1,
-                ));
-      case RouteNames.homeScreen:
-        return MaterialPageRoute(builder: (_) => const MyHomePage());
-      default:
-        return MaterialPageRoute(
-            builder: (_) => Scaffold(
-                  body: Center(
-                      child: Text('No route defined for ${settings.name}')),
-                ));
-    }
-  }
+class AppRouter {
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+  static final GoRouter _router = GoRouter(
+    initialLocation: Routes.homeNamedPage,
+    debugLogDiagnostics: true,
+    navigatorKey: _rootNavigatorKey,
+    routes: [
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return MainScreen(screen: child);
+        },
+        routes: [
+          GoRoute(
+            path: Routes.homeNamedPage,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: HomeScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: Routes.homeDetailsNamedPage,
+                builder: (context, state) => const HomeDetailsScreen(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: Routes.profileNamedPage,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: ProfileScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: Routes.profileDetailsNamedPage,
+                builder: (context, state) => const ProfileDetailsScreen(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: Routes.settingsNamedPage,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: SettingScreen(),
+            ),
+          ),
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) => const NotFoundScreen(),
+  );
+
+  static GoRouter get router => _router;
 }

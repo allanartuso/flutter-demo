@@ -4,7 +4,6 @@ import '../libs/features/home/home-details.dart';
 import '../libs/features/home/home.dart';
 import '../libs/features/settings/settings.dart';
 import '../libs/features/user/user-details.dart';
-import '../libs/features/user/user.dart';
 import 'main.dart';
 import 'not-found.dart';
 
@@ -50,14 +49,8 @@ class AppRouter {
           GoRoute(
             path: Routes.profileNamedPage,
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: ProfileScreen(),
+              child: UserProfileScreen(),
             ),
-            routes: [
-              GoRoute(
-                path: Routes.profileDetailsNamedPage,
-                builder: (context, state) => const ProfileDetailsScreen(),
-              ),
-            ],
           ),
           GoRoute(
             path: Routes.settingsNamedPage,

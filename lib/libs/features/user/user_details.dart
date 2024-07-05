@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/data-access/user/user_bloc.dart';
 import 'package:flutter_application_1/libs/data-access/user/user_repo.dart';
+import 'package:flutter_application_1/libs/ui/user/user_form.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -22,15 +23,26 @@ class UserProfileScreen extends StatelessWidget {
               );
             }
 
-            print(state.user?.email);
-            print(state.error);
-
-            return Center(
-              child: Text(
-                state.user?.email ?? 'No Email',
-                style: TextStyle(color: Colors.white),
-              ),
-            );
+            final user = state.user;
+            if (null == user) {
+              return const Center(
+                child: Text('User not found'),
+              );
+            } else {
+              return Center(
+                child: UserForm(
+                  user: user,
+                  onSave: (user) {
+                    // Perform save operation here
+                    print(user.id);
+                    print(user.email);
+                    print(user.firstName);
+                    print(user.lastName);
+                    print(user.birthTime);
+                  },
+                ),
+              );
+            }
           },
         ),
       ),

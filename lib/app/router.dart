@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../libs/features/home/home-details.dart';
 import '../libs/features/home/home.dart';
 import '../libs/features/settings/settings.dart';
-import '../libs/features/user/user-details.dart';
+import '../libs/features/user/user_details.dart';
 import 'main.dart';
 import 'not-found.dart';
 

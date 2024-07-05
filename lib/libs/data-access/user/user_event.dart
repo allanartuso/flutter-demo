@@ -1,9 +1,16 @@
 part of 'user_bloc.dart';
 
-class UserEvent {}
+@immutable
+sealed class UserEvent extends Equatable {
+  const UserEvent();
 
-class LoadUserEvent extends UserEvent {
+  @override
+  List<Object> get props => [];
+}
+
+@immutable
+final class LoadUserEvent extends UserEvent {
   final String id;
 
-  LoadUserEvent({required this.id});
+  const LoadUserEvent({required this.id});
 }

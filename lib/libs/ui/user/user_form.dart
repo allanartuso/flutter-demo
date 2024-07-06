@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
 import 'package:flutter_application_1/shared/ui/form/input.dart';
 import 'package:flutter_application_1/shared/ui/layout/gap.dart';
-import 'package:form_validator/form_validator.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class UserForm extends StatefulWidget {
   final UserModel user;
@@ -41,13 +41,17 @@ class _UserFormState extends State<UserForm> {
   List<Widget> _buildForm() {
     return [
       DemoTextFormField(
-          controller: _emailController,
-          labelText: 'Email',
-          validator: ValidationBuilder().email().build()),
+        controller: _emailController,
+        labelText: 'Email',
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
+          FormBuilderValidators.email(),
+        ]),
+      ),
       DemoTextFormField(
         controller: _firstNameController,
         labelText: 'First Name',
-        validator: ValidationBuilder().required().build(),
+        validator: FormBuilderValidators.required(),
       ),
       DemoTextFormField(
         controller: _lastNameController,

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-class UserRepository {
+class UserService {
   Future<UserModel> getUser(String id) async {
     final response =
         await http.get(Uri.parse('http://localhost:3000/users/$id'));

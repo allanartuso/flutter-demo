@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data-model/user/user_model.dart';
-import 'user_repo.dart';
+import '../../../data-model/user/user_model.dart';
+import '../user_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -8,7 +8,7 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  final UserRepository userRepository;
+  final UserService userRepository;
 
   UserBloc(this.userRepository) : super(const UserState()) {
     on<LoadUserEvent>(_onSubscriptionRequested);

@@ -32,8 +32,8 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
+        padding: const EdgeInsets.all(32.0),
         child: widget.screen,
-        padding: EdgeInsets.all(32.0),
       ),
       bottomNavigationBar: BottomNavigationBar(
           items: widget.tabs,

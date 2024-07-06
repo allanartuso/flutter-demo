@@ -14,7 +14,7 @@ class UserProfileScreen extends StatelessWidget {
       child: BlocProvider(
         create: (context) =>
             UserBloc(RepositoryProvider.of<UserService>(context))
-              ..add(LoadUserEvent(id: '1')),
+              ..add(const LoadUserEvent(id: '1')),
         child: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
             if (state.isLoading) {

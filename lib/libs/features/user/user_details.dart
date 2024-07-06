@@ -33,12 +33,8 @@ class UserProfileScreen extends StatelessWidget {
                 child: UserForm(
                   user: user,
                   onSave: (user) {
-                    // Perform save operation here
-                    print(user.id);
-                    print(user.email);
-                    print(user.firstName);
-                    print(user.lastName);
-                    print(user.birthDate);
+                    BlocProvider.of<UserBloc>(context)
+                        .add(UpdateUserEvent(user: user));
                   },
                 ),
               );

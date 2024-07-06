@@ -4,27 +4,27 @@ import 'package:meta/meta.dart';
 
 @immutable
 @JsonSerializable()
-class UserModel extends Equatable {
+class User extends Equatable {
   final String id;
   final String email;
   final String? firstName;
   final String? lastName;
   final String? birthDate;
 
-  const UserModel(
+  const User(
       {required this.id,
       required this.email,
       this.firstName,
       required this.lastName,
       this.birthDate});
 
-  UserModel copyWith(
+  User copyWith(
       {String? id,
       String? email,
       String? firstName,
       String? lastName,
       String? birthDate}) {
-    return UserModel(
+    return User(
       id: id ?? this.id,
       email: email ?? this.email,
       firstName: firstName ?? this.firstName,
@@ -33,7 +33,7 @@ class UserModel extends Equatable {
     );
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
@@ -41,7 +41,7 @@ class UserModel extends Equatable {
   List<Object?> get props => [id, email, firstName, lastName, birthDate];
 }
 
-UserModel _$UserFromJson(Map<String, dynamic> json) => UserModel(
+User _$UserFromJson(Map<String, dynamic> json) => User(
       id: json['id'] as String,
       email: json['email'] as String,
       firstName: json['firstName'] == null ? null : json['firstName'] as String,
@@ -50,7 +50,7 @@ UserModel _$UserFromJson(Map<String, dynamic> json) => UserModel(
           json['birthDate'] == null ? null : (json['birthDate'] as String),
     );
 
-Map<String, dynamic> _$UserToJson(UserModel instance) => <String, dynamic>{
+Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'firstName': instance.firstName,

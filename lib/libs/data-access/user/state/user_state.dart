@@ -4,7 +4,7 @@ part of 'user_bloc.dart';
 final class UserState extends Equatable {
   const UserState({this.user, this.error, this.isLoading = false});
 
-  final UserModel? user;
+  final User? user;
   final String? error;
   final bool isLoading;
 
@@ -12,7 +12,7 @@ final class UserState extends Equatable {
   List<Object?> get props => [user, error, isLoading];
 
   UserState copyWith({
-    UserModel? user,
+    User? user,
     String? error,
     bool? isLoading,
   }) {

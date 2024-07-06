@@ -11,22 +11,36 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final UserService userRepository;
 
   UserBloc(this.userRepository) : super(const UserState()) {
-    on<LoadUserEvent>(_onSubscriptionRequested);
-  }
-
-  Future<void> _onSubscriptionRequested(
-    LoadUserEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    emit(state.copyWith(
-      isLoading: true,
-    ));
-    try {
-      final data = await userRepository.getUser(event.id);
-      emit(state.copyWith(user: data, isLoading: false));
-    } catch (error) {
+    on<LoadUserEvent>((
+      LoadUserEvent event,
+      Emitter<UserState> emit,
+    ) async {
       emit(state.copyWith(
-          user: null, isLoading: false, error: error.toString()));
-    }
+        isLoading: true,
+      ));
+      try {
+        final data = await userRepository.getUser(event.id);
+        emit(state.copyWith(user: data, isLoading: false));
+      } catch (error) {
+        emit(state.copyWith(
+            user: null, isLoading: false, error: error.toString()));
+      }
+    });
+
+    on<UpdateUserEvent>((
+      UpdateUserEvent event,
+      Emitter<UserState> emit,
+    ) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
+      try {
+        final data = await userRepository.updateUser(event.user);
+        emit(state.copyWith(user: data, isLoading: false));
+      } catch (error) {
+        emit(state.copyWith(
+            user: null, isLoading: false, error: error.toString()));
+      }
+    });
   }
 }

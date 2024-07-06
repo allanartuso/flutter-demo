@@ -14,3 +14,10 @@ final class LoadUserEvent extends UserEvent {
 
   const LoadUserEvent({required this.id});
 }
+
+@immutable
+final class UpdateUserEvent extends UserEvent {
+  final User user;
+
+  const UpdateUserEvent({required this.user});
+}

@@ -5,8 +5,8 @@ import 'package:flutter_application_1/shared/ui/layout/gap.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class UserForm extends StatefulWidget {
-  final UserModel user;
-  final Function(UserModel) onSave;
+  final User user;
+  final Function(User) onSave;
 
   const UserForm({super.key, required this.user, required this.onSave});
 
@@ -63,7 +63,7 @@ class _UserFormState extends State<UserForm> {
       ),
       FilledButton(
         onPressed: () {
-          final user = UserModel(
+          final user = User(
             id: widget.user.id,
             email: _emailController.text,
             firstName: _firstNameController.text,

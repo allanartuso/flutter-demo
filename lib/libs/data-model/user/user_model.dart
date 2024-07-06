@@ -1,10 +1,11 @@
+import 'package:flutter_application_1/shared/data-access/rest/base_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 @JsonSerializable()
-class User extends Equatable {
+class User extends Equatable implements BaseDto<User> {
   final String id;
   final String email;
   final String? firstName;
@@ -33,8 +34,10 @@ class User extends Equatable {
     );
   }
 
+  @override
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override

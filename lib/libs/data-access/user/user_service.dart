@@ -1,27 +1,40 @@
+import 'package:flutter_application_1/shared/data-access/rest/rest_service.dart';
+import 'package:flutter_application_1/shared/data-model/form/form_service.dart';
 import '../../data-model/user/user_model.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
 
-class UserService {
-  Future<User> getUser(String id) async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/users/$id'));
-
-    final json = jsonDecode(response.body) as Map<String, dynamic>;
-    return User.fromJson(json);
+class UserService implements FormService<User, User> {
+  @override
+  Future<User> loadResource(String id) async {
+    final response = await HttpService.get('http://localhost:3000/users/$id');
+    return User.fromJson(response);
   }
 
-  Future<User> updateUser(User user) async {
+  @override
+  Future<User> saveResource(User user) async {
     final String id = user.id;
-    final url = Uri.parse('http://localhost:3000/users/$id');
-    final response = await http.put(
-      url,
-      body: jsonEncode(user.toJson()),
-      headers: {'Content-Type': 'application/json'},
+    final response = await HttpService.put(
+      'http://localhost:3000/users/$id',
+      user,
     );
 
-    final json = jsonDecode(response.body) as Map<String, dynamic>;
-    return User.fromJson(json);
+    return User.fromJson(response);
+  }
+
+  @override
+  Future<User> createResource(User user) async {
+    final response = await HttpService.post(
+      'http://localhost:3000/users',
+      user,
+    );
+
+    return User.fromJson(response);
+  }
+
+  @override
+  Future<void> deleteResource(String id) async {
+    await HttpService.delete('http://localhost:3000/users/$id');
+
+    return;
   }
 }

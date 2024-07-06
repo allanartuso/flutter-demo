@@ -19,7 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         isLoading: true,
       ));
       try {
-        final data = await userRepository.getUser(event.id);
+        final data = await userRepository.loadResource(event.id);
         emit(state.copyWith(user: data, isLoading: false));
       } catch (error) {
         emit(state.copyWith(
@@ -35,7 +35,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         isLoading: true,
       ));
       try {
-        final data = await userRepository.updateUser(event.user);
+        final data = await userRepository.saveResource(event.user);
         emit(state.copyWith(user: data, isLoading: false));
       } catch (error) {
         emit(state.copyWith(

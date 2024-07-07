@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/data-access/users/users_provider.dart';
+import 'package:flutter_application_1/libs/ui/users/users_list.dart';
 
 class Users extends StatelessWidget {
   const Users({super.key});
@@ -22,16 +23,7 @@ class Users extends StatelessWidget {
             child: Text('No users found'),
           );
         } else {
-          return ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-              return ListTile(
-                title: Text(user.firstName ?? user.email),
-                subtitle: Text(user.email),
-              );
-            },
-          );
+          return UsersList(users: users);
         }
       },
     );

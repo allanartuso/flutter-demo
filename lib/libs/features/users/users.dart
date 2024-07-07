@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/router.dart';
 import 'package:flutter_application_1/libs/data-access/users/users_provider.dart';
 import 'package:flutter_application_1/libs/ui/users/users_list.dart';
+import 'package:go_router/go_router.dart';
 
-class Users extends StatelessWidget {
-  const Users({super.key});
+class UsersContainer extends StatelessWidget {
+  const UsersContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,11 @@ class Users extends StatelessWidget {
             child: Text('No users found'),
           );
         } else {
-          return UsersList(users: users);
+          return UsersList(
+              users: users,
+              onRowTap: (user, index) {
+                GoRouter.of(context).go('${Routes.users}/${user.id}');
+              });
         }
       },
     );

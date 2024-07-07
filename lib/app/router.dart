@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../libs/features/home/home-details.dart';
 import '../libs/features/home/home.dart';
 import '../libs/features/settings/settings.dart';
-import '../libs/features/user/user_details.dart';
+import '../libs/features/user/user.dart';
 import 'main.dart';
 import 'not-found.dart';
 
@@ -12,7 +12,7 @@ class Routes {
   static const root = '/';
   static const homeNamedPage = '/home';
   static const homeDetailsNamedPage = 'details';
-  static const profileNamedPage = '/profile';
+  static const user = ':id';
   static const profileDetailsNamedPage = 'details';
   static const settingsNamedPage = '/settings';
   static const users = '/users';
@@ -49,16 +49,17 @@ class AppRouter {
             ],
           ),
           GoRoute(
-            path: Routes.profileNamedPage,
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: UserDetails(),
-            ),
-          ),
-          GoRoute(
             path: Routes.users,
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: Users(),
+              child: UsersContainer(),
             ),
+            routes: [
+              GoRoute(
+                path: Routes.user,
+                pageBuilder: (context, state) => NoTransitionPage(
+                    child: UserContainer(id: state.pathParameters['id']!)),
+              ),
+            ],
           ),
           GoRoute(
             path: Routes.settingsNamedPage,

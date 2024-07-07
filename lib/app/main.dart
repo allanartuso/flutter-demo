@@ -10,17 +10,13 @@ class MainScreen extends StatefulWidget {
       label: 'Home',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      label: 'Profile',
-    ),
-    BottomNavigationBarItem(
       icon: Icon(Icons.person_search),
       label: 'Users',
     ),
-    // BottomNavigationBarItem(
-    //   icon: Icon(Icons.settings),
-    //   label: 'Setting',
-    // ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: 'Setting',
+    ),
   ];
 
   const MainScreen({super.key, required this.screen});
@@ -35,10 +31,7 @@ class MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: widget.screen,
-      ),
+      body: widget.screen,
       bottomNavigationBar: BottomNavigationBar(
           items: widget.tabs,
           onTap: (index) {
@@ -47,12 +40,9 @@ class MainScreenState extends State<MainScreen> {
                 AppRouter.router.go(Routes.homeNamedPage);
                 break;
               case 1:
-                AppRouter.router.go(Routes.profileNamedPage);
-                break;
-              case 2:
                 AppRouter.router.go(Routes.users);
                 break;
-              case 3:
+              case 2:
                 AppRouter.router.go(Routes.settingsNamedPage);
                 break;
             }

@@ -83,8 +83,11 @@ class _UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        children: gap(children: _buildForm()),
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: gap(children: _buildForm()),
+        ),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter_application_1/shared/data-model/form/form_service.dart';
 import '../../data-model/user/user_model.dart';
 import 'dart:async';
 
-class UserService implements FormService<User, User> {
+class UserRepository implements FormService<User, User> {
   @override
   Future<User> loadResource(String id) async {
     final response = await HttpService.get('http://localhost:3000/users/$id');

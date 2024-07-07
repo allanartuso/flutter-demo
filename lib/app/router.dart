@@ -49,7 +49,7 @@ class AppRouter {
           GoRoute(
             path: Routes.profileNamedPage,
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: UserProfileScreen(),
+              child: UserDetails(),
             ),
           ),
           GoRoute(

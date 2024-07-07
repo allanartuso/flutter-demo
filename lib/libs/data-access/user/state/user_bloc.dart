@@ -1,14 +1,10 @@
+import 'package:flutter_application_1/libs/data-access/user/state/user_event.dart';
+import 'package:flutter_application_1/libs/data-access/user/state/user_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data-model/user/user_model.dart';
-import '../user_service.dart';
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
-
-part 'user_event.dart';
-part 'user_state.dart';
+import '../user_repository.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  final UserService userRepository;
+  final UserRepository userRepository;
 
   UserBloc(this.userRepository) : super(const UserState()) {
     on<LoadUserEvent>((
@@ -42,5 +38,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             user: null, isLoading: false, error: error.toString()));
       }
     });
+  }
+
+  void addAll(List<UserEvent> events) {
+    for (var event in events) {
+      add(event);
+    }
   }
 }

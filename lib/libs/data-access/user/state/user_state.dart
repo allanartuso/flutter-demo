@@ -1,4 +1,6 @@
-part of 'user_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 final class UserState extends Equatable {

@@ -11,9 +11,6 @@ sealed class UserEvent extends Equatable {
 }
 
 @immutable
-final class InitialUserEvent extends UserEvent {}
-
-@immutable
 final class LoadUserEvent extends UserEvent {
   final String id;
 

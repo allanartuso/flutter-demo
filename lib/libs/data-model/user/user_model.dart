@@ -60,3 +60,14 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'lastName': instance.lastName,
       'birthDate': instance.birthDate,
     };
+
+class UserFilter {
+  String? id;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? birthDate;
+
+  UserFilter(
+      {this.id, this.email, this.firstName, this.lastName, this.birthDate});
+}

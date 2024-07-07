@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 
 class HttpService {
-  static Future<Map<String, dynamic>> get(String url,
+  static Future<Map<String, dynamic>> getResource(String url,
       {Map<String, String>? headers}) async {
     final response = await http.get(
       Uri.parse(url),
@@ -12,6 +12,16 @@ class HttpService {
     );
 
     return jsonDecode(response.body) as Map<String, dynamic>;
+  }
+
+  static Future<List<dynamic>> getResources(String url,
+      {Map<String, String>? headers}) async {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers ?? {'Content-Type': 'application/json'},
+    );
+
+    return jsonDecode(response.body) as List<dynamic>;
   }
 
   static Future<Map<String, dynamic>> put<T extends BaseDto>(String url, T body,

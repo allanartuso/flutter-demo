@@ -1,4 +1,4 @@
-abstract class FormService<DTO, CREATE_DTO> {
+abstract class FormRepository<DTO, CREATE_DTO> {
   Future<DTO> loadResource(String id);
 
   Future<DTO> saveResource(DTO resource);

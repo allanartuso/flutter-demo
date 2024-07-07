@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/libs/features/users/users.dart';
 import 'package:go_router/go_router.dart';
 import '../libs/features/home/home-details.dart';
 import '../libs/features/home/home.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const profileNamedPage = '/profile';
   static const profileDetailsNamedPage = 'details';
   static const settingsNamedPage = '/settings';
+  static const users = '/users';
   //static profileNamedPage([String? name]) => '/${name ?? ':profile'}';
   static Widget errorWidget(BuildContext context, GoRouterState state) =>
       const NotFoundScreen();
@@ -50,6 +52,12 @@ class AppRouter {
             path: Routes.profileNamedPage,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: UserDetails(),
+            ),
+          ),
+          GoRoute(
+            path: Routes.users,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: Users(),
             ),
           ),
           GoRoute(

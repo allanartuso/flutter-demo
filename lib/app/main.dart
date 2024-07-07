@@ -14,9 +14,13 @@ class MainScreen extends StatefulWidget {
       label: 'Profile',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Setting',
+      icon: Icon(Icons.person_search),
+      label: 'Users',
     ),
+    // BottomNavigationBarItem(
+    //   icon: Icon(Icons.settings),
+    //   label: 'Setting',
+    // ),
   ];
 
   const MainScreen({super.key, required this.screen});
@@ -46,6 +50,9 @@ class MainScreenState extends State<MainScreen> {
                 AppRouter.router.go(Routes.profileNamedPage);
                 break;
               case 2:
+                AppRouter.router.go(Routes.users);
+                break;
+              case 3:
                 AppRouter.router.go(Routes.settingsNamedPage);
                 break;
             }

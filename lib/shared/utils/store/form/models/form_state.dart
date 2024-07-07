@@ -15,6 +15,6 @@ abstract class FormState<T> extends Equatable {
   FormState<T> copyWith({
     T? resource,
     String? error,
-    bool? isLoading,
+    bool isLoading = false,
   });
 }

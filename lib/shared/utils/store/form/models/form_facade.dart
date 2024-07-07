@@ -1,4 +1,4 @@
-abstract class Facade<T> {
+abstract class FormFacade<T> {
   load(String id);
   update(T user);
 }

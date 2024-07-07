@@ -7,7 +7,7 @@ import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
 import 'package:flutter_application_1/shared/utils/store/form/models/form_facade.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class _UserFacade implements Facade<User> {
+class _UserFacade implements FormFacade<User> {
   @override
   LoadUserEvent load(String id) {
     return LoadUserEvent(id: id);
@@ -19,7 +19,7 @@ class _UserFacade implements Facade<User> {
   }
 }
 
-class _UserFacadeWithBloc implements Facade<User> {
+class _UserFacadeWithBloc implements FormFacade<User> {
   final UserBloc bloc;
 
   _UserFacadeWithBloc(this.bloc);

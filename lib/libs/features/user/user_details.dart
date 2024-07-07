@@ -17,7 +17,7 @@ class UserDetails extends StatelessWidget {
           );
         }
 
-        final user = state.user;
+        final user = state.resource;
         if (null == user) {
           return const Center(
             child: Text('User not found'),

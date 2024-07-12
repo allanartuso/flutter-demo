@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/data-access/users/state/users_bloc.dart';
 import 'package:flutter_application_1/libs/data-access/users/state/users_event.dart';
 import 'package:flutter_application_1/libs/data-access/users/state/users_state.dart';
-import 'package:flutter_application_1/libs/data-access/users/users_repository.dart';
 import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
+import 'package:flutter_application_1/shared/utils/config/injection.dart';
 import 'package:flutter_application_1/shared/utils/store/list/models/list_facade.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,19 +31,14 @@ Widget usersProvider({
       builder,
   List<UsersEvent> Function(UsersFacade facade)? initialEvents,
 }) {
-  return RepositoryProvider(
-    create: (context) => UsersRepository(),
-    child: BlocProvider(
-      create: (context) {
-        return UsersBloc(RepositoryProvider.of<UsersRepository>(context))
-          ..addAll(initialEvents != null ? initialEvents(UsersFacade()) : []);
+  return BlocProvider(
+    create: (_) => getIt<UsersBloc>()
+      ..addAll(initialEvents != null ? initialEvents(UsersFacade()) : []),
+    child: BlocBuilder<UsersBloc, UsersState>(
+      builder: (context, state) {
+        return builder(context, state,
+            UsersFacadeWithBloc(BlocProvider.of<UsersBloc>(context)));
       },
-      child: BlocBuilder<UsersBloc, UsersState>(
-        builder: (context, state) {
-          return builder(context, state,
-              UsersFacadeWithBloc(BlocProvider.of<UsersBloc>(context)));
-        },
-      ),
     ),
   );
 }

@@ -4,10 +4,11 @@ import 'package:flutter_application_1/libs/data-access/user/state/user_event.dar
 import 'package:flutter_application_1/libs/data-access/user/state/user_state.dart';
 import 'package:flutter_application_1/libs/data-access/user/user_repository.dart';
 import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
+import 'package:flutter_application_1/shared/utils/config/injection.dart';
 import 'package:flutter_application_1/shared/utils/store/form/models/form_facade.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class _UserFacade implements FormFacade<User> {
+class UserFacade implements FormFacade<User> {
   @override
   LoadUserEvent load(String id) {
     return LoadUserEvent(id: id);
@@ -19,10 +20,10 @@ class _UserFacade implements FormFacade<User> {
   }
 }
 
-class _UserFacadeWithBloc implements FormFacade<User> {
+class UserFacadeWithBloc implements FormFacade<User> {
   final UserBloc bloc;
 
-  _UserFacadeWithBloc(this.bloc);
+  UserFacadeWithBloc(this.bloc);
 
   @override
   void load(String id) {
@@ -37,20 +38,15 @@ class _UserFacadeWithBloc implements FormFacade<User> {
 
 Widget userProvider({
   required BuildContext context,
-  required Widget Function(BuildContext, UserState, _UserFacadeWithBloc)
-      builder,
-  List<UserEvent> Function(_UserFacade facade)? initialEvents,
+  required Widget Function(BuildContext, UserState, UserFacadeWithBloc) builder,
+  List<UserEvent> Function(UserFacade facade)? initialEvents,
 }) {
-  return RepositoryProvider(
-    create: (context) => UserRepository(),
-    child: BlocProvider(
-      create: (context) =>
-          UserBloc(RepositoryProvider.of<UserRepository>(context))
-            ..addAll(initialEvents != null ? initialEvents(_UserFacade()) : []),
-      child: BlocBuilder<UserBloc, UserState>(
-        builder: (context, state) => builder(context, state,
-            _UserFacadeWithBloc(BlocProvider.of<UserBloc>(context))),
-      ),
+  return BlocProvider(
+    create: (_) => getIt<UserBloc>()
+      ..addAll(initialEvents != null ? initialEvents(UserFacade()) : []),
+    child: BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) => builder(context, state,
+          UserFacadeWithBloc(BlocProvider.of<UserBloc>(context))),
     ),
   );
 }

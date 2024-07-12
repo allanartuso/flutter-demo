@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/data-access/user/user_provider.dart';
-import 'package:flutter_application_1/libs/ui/user/user_form.dart';
+import 'package:flutter_application_1/libs/ui/user/user_form_page.dart';
 
 class UserContainer extends StatelessWidget {
   final String id;
@@ -13,7 +13,7 @@ class UserContainer extends StatelessWidget {
       initialEvents: (facade) => [facade.load(id)],
       builder: (context, state, facade) {
         return Center(
-          child: UserForm(
+          child: UserFormPage(
             isLoading: state.isLoading,
             user: state.resource,
             onSave: (user) {

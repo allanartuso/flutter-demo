@@ -12,27 +12,15 @@ class UserContainer extends StatelessWidget {
       context: context,
       initialEvents: (facade) => [facade.load(id)],
       builder: (context, state, facade) {
-        if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        final user = state.resource;
-        if (null == user) {
-          return const Center(
-            child: Text('User not found'),
-          );
-        } else {
-          return Center(
-            child: UserForm(
-              user: user,
-              onSave: (user) {
-                facade.update(user);
-              },
-            ),
-          );
-        }
+        return Center(
+          child: UserForm(
+            isLoading: state.isLoading,
+            user: state.resource,
+            onSave: (user) {
+              facade.update(user);
+            },
+          ),
+        );
       },
     );
   }

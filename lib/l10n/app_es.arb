@@ -1,3 +1,21 @@
 {
-  "helloWorld": "¡Hola Mundo!"
+  "helloWorld": "¡Hola Mundo!",
+  "common_button_save": "Guardar",
+  "common_button_cancel": "Cancelar",
+  "common_button_delete": "Eliminar",
+  "common_button_reset": "Reiniciar",
+  "common_button_close": "Cerrar",
+  "common_button_ok": "OK",
+  "common_button_yes": "Sí",
+  "common_button_no": "No",
+  "common_button_back": "Atrás",
+  "common_button_next": "Siguiente",
+  "common_button_add": "Agregar",
+  "common_button_edit": "Editar",
+  "common_button_view": "Ver",
+  "user_form_title": "Usuario",
+  "user_form_firstName": "Nombre",
+  "user_form_lastName": "Apellido",
+  "user_form_email": "Correo electrónico",
+  "user_form_notFound": "Usuario no encontrado"
 }

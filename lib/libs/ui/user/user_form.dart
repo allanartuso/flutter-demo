@@ -3,6 +3,7 @@ import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
 import 'package:flutter_application_1/shared/ui/form/input.dart';
 import 'package:flutter_application_1/shared/ui/layout/gap.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserForm extends StatefulWidget {
   final User user;
@@ -38,55 +39,55 @@ class _UserFormState extends State<UserForm> {
     super.dispose();
   }
 
-  List<Widget> _buildForm() {
-    return [
-      DemoTextFormField(
-        controller: _emailController,
-        labelText: 'Email',
-        validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(),
-          FormBuilderValidators.email(),
-        ]),
-      ),
-      DemoTextFormField(
-        controller: _firstNameController,
-        labelText: 'First Name',
-        validator: FormBuilderValidators.required(),
-      ),
-      DemoTextFormField(
-        controller: _lastNameController,
-        labelText: 'Last Name',
-      ),
-      DemoTextFormField(
-        controller: _birthDateController,
-        labelText: 'Birth Date',
-      ),
-      FilledButton(
-        onPressed: () {
-          final user = User(
-            id: widget.user.id,
-            email: _emailController.text,
-            firstName: _firstNameController.text,
-            lastName: _lastNameController.text,
-            birthDate: _birthDateController.text,
-          );
-          widget.onSave(user);
-        },
-        child: const Text('Save'),
-      ),
-    ];
-  }
-
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: gap(children: _buildForm()),
+    final i18n = AppLocalizations.of(context)!;
+
+    return Center(
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: gap(children: [
+              DemoTextFormField(
+                controller: _emailController,
+                labelText: i18n.user_form_email,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                  FormBuilderValidators.email(),
+                ]),
+              ),
+              DemoTextFormField(
+                controller: _firstNameController,
+                labelText: i18n.user_form_firstName,
+                validator: FormBuilderValidators.required(),
+              ),
+              DemoTextFormField(
+                controller: _lastNameController,
+                labelText: i18n.user_form_lastName,
+              ),
+              DemoTextFormField(
+                controller: _birthDateController,
+                labelText: i18n.user_form_birthDate,
+              ),
+              FilledButton(
+                onPressed: () {
+                  final updatedUser = User(
+                    id: widget.user.id,
+                    email: _emailController.text,
+                    firstName: _firstNameController.text,
+                    lastName: _lastNameController.text,
+                    birthDate: _birthDateController.text,
+                  );
+                  widget.onSave(updatedUser);
+                },
+                child: Text(i18n.common_button_save),
+              ),
+            ]),
+          ),
         ),
       ),
     );

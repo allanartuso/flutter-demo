@@ -1,6 +1,22 @@
 {
   "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "common_button_save": "Save",
+  "common_button_cancel": "Cancel",
+  "common_button_delete": "Delete",
+  "common_button_reset": "Reset",
+  "common_button_close": "Close",
+  "common_button_ok": "OK",
+  "common_button_yes": "Yes",
+  "common_button_no": "No",
+  "common_button_back": "Back",
+  "common_button_next": "Next",
+  "common_button_add": "Add",
+  "common_button_edit": "Edit",
+  "common_button_view": "View",
+  "user_form_title": "User",
+  "user_form_firstName": "First Name",
+  "user_form_lastName": "Last Name",
+  "user_form_email": "Email",
+  "user_form_birthDate": "Birth Date",
+  "user_form_notFound": "User not found"
 }

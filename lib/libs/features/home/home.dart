@@ -6,8 +6,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = AppLocalizations.of(context)!;
+
     return Center(
-      child: Text(AppLocalizations.of(context)!.helloWorld),
+      child: Text(i18n.helloWorld),
     );
   }
 }

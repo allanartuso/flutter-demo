@@ -1,20 +1,10 @@
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
-@immutable
-abstract class FormState<T> extends Equatable {
-  final T? resource;
-  final String? error;
-  final bool isLoading;
+abstract class FormState<T> {
+  final Rx<T?> resource;
+  final Rx<String?> error;
+  final Rx<bool> isLoading;
 
-  const FormState({this.resource, this.error, this.isLoading = false});
-
-  @override
-  List<Object?> get props => [resource, error, isLoading];
-
-  FormState<T> copyWith({
-    T? resource,
-    String? error,
-    bool isLoading = false,
-  });
+  const FormState(
+      {required this.resource, required this.error, required this.isLoading});
 }

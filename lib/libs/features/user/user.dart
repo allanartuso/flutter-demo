@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/libs/data-access/user/user_provider.dart';
+import 'package:flutter_application_1/libs/data-access/user/state/user_controller.dart';
 import 'package:flutter_application_1/libs/ui/user/user_form_page.dart';
+import 'package:flutter_application_1/shared/utils/config/injection.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class UserContainer extends StatelessWidget {
   final String id;
@@ -8,20 +10,18 @@ class UserContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return userProvider(
-      context: context,
-      initialEvents: (facade) => [facade.load(id)],
-      builder: (context, state, facade) {
-        return Center(
-          child: UserFormPage(
-            isLoading: state.isLoading,
-            user: state.resource,
-            onSave: (user) {
-              facade.update(user);
-            },
-          ),
-        );
-      },
+    final UserController controller = getIt<UserController>();
+    final state = controller.state;
+    controller.loadResource(id);
+
+    return Obx(
+      () => UserFormPage(
+        isLoading: state.isLoading.value,
+        user: state.resource.value,
+        onSave: (user) {
+          controller.saveResource(user);
+        },
+      ),
     );
   }
 }

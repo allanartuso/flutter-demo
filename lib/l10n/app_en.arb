@@ -18,5 +18,6 @@
   "user_form_lastName": "Last Name",
   "user_form_email": "Email",
   "user_form_birthDate": "Birth Date",
-  "user_form_notFound": "User not found"
+  "user_form_notFound": "User not found",
+  "users_list_notFound": "Users not found"
 }

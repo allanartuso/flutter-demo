@@ -17,5 +17,6 @@
   "user_form_firstName": "Nombre",
   "user_form_lastName": "Apellido",
   "user_form_email": "Correo electrónico",
-  "user_form_notFound": "Usuario no encontrado"
+  "user_form_notFound": "Usuario no encontrado",
+  "users_list_notFound": "Usuarios no encontrados"
 }

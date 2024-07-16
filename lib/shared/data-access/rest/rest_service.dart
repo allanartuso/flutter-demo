@@ -39,7 +39,7 @@ class HttpService {
     return jsonDecode(response.body) as List<dynamic>;
   }
 
-  Future<Map<String, dynamic>> put<T extends BaseDto>(String url, T body,
+  Future<Map<String, dynamic>> put<T extends ResourceDto>(String url, T body,
       {Map<String, String>? headers}) async {
     final response = await http.put(
       getUrl(url),
@@ -50,7 +50,7 @@ class HttpService {
     return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
-  Future<Map<String, dynamic>> post<T extends BaseDto>(String url, T body,
+  Future<Map<String, dynamic>> post<T extends ResourceDto>(String url, T body,
       {Map<String, String>? headers}) async {
     final response = await http.post(
       getUrl(url),

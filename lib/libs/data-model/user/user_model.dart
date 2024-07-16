@@ -5,7 +5,8 @@ import 'package:meta/meta.dart';
 
 @immutable
 @JsonSerializable()
-class User extends Equatable implements BaseDto<User> {
+class User extends Equatable implements ResourceDto {
+  @override
   final String id;
   final String email;
   final String? firstName;

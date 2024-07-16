@@ -1,10 +1,15 @@
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:signals/signals.dart';
 
 abstract class FormState<T> {
-  final Rx<T?> resource;
-  final Rx<String?> error;
-  final Rx<bool> isLoading;
+  Signal<T?> resource;
+  Signal<bool> isLoading;
+  Signal<String> error;
 
-  const FormState(
-      {required this.resource, required this.error, required this.isLoading});
+  FormState({
+    List<T> initialResources = const [],
+    String initialError = '',
+    bool initialIsLoading = false,
+  })  : resource = Signal(null),
+        error = Signal(initialError),
+        isLoading = Signal(initialIsLoading);
 }

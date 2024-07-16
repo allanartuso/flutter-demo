@@ -1,9 +1,10 @@
+import 'package:flutter_application_1/shared/data-access/rest/base_model.dart';
 import 'package:flutter_application_1/shared/data-model/list/list_repository.dart';
 import 'package:flutter_application_1/shared/utils/store/list/models/list_state.dart';
 import 'package:signals/signals.dart';
 
 class ListEventHandlers {
-  static void load<T, PARAMS>(
+  static void load<T extends ResourceDto, PARAMS>(
     ListState<T, PARAMS> state,
     ListRepository<T, PARAMS> repository,
   ) async {

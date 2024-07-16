@@ -4,6 +4,6 @@ import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
 import 'package:flutter_application_1/shared/utils/config/injection.dart';
 import 'package:flutter_application_1/shared/utils/store/form/models/form_facade.dart';
 
-class UsersFacade extends AbstractFormFacade<User, UserState> {
-  UsersFacade() : super(effects: getIt<UserEffects>());
+class UserFacade extends AbstractFormFacade<User, UserState> {
+  UserFacade() : super(effects: getIt<UserEffects>());
 }

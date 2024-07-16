@@ -4,15 +4,17 @@ import 'package:flutter_application_1/shared/utils/store/form/models/form_state.
 
 abstract class AbstractFormFacade<RESOURCE extends ResourceDto,
     STATE extends FormState<RESOURCE>> {
-  AbstractEffects<RESOURCE, STATE> effects;
+  AbstractFormEffects<RESOURCE, STATE> effects;
+
+  STATE get state => effects.state;
 
   AbstractFormFacade({required this.effects});
 
   void load(String id) {
-    effects.loadResource(id);
+    effects.load(id);
   }
 
-  void update(RESOURCE user) {
-    effects.saveResource(user);
+  void save(RESOURCE user) {
+    effects.save(user);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/router.dart';
-import 'package:flutter_application_1/libs/data-access/users/state/users_controller.dart';
+import 'package:flutter_application_1/libs/data-access/users/users_facade.dart';
 import 'package:flutter_application_1/libs/ui/users/users_list_page.dart';
 import 'package:flutter_application_1/shared/utils/config/injection.dart';
 import 'package:go_router/go_router.dart';
@@ -11,10 +11,10 @@ class UsersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UsersController controller = getIt<UsersController>();
-    final state = controller.state;
+    final UsersFacade facade = getIt<UsersFacade>();
+    final state = facade.state;
 
-    controller.loadResources();
+    facade.load();
 
     return Watch(
       (context) => UsersListPage(

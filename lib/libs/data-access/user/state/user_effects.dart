@@ -5,7 +5,7 @@ import 'package:flutter_application_1/shared/utils/store/form/models/form_effect
 import 'package:injectable/injectable.dart';
 
 @singleton
-class UserEffects extends AbstractEffects<User, UserState> {
+class UserEffects extends AbstractFormEffects<User, UserState> {
   UserEffects({required UserRepository repository})
       : super(repository: repository, state: UserState());
 }

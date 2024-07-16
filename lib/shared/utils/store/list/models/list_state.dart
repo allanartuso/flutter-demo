@@ -1,7 +1,8 @@
+import 'package:flutter_application_1/shared/data-access/rest/base_model.dart';
 import 'package:flutter_application_1/shared/data-model/common/request_options.dart';
 import 'package:signals/signals.dart';
 
-abstract class ListState<T, PARAMS> {
+abstract class ListState<T extends ResourceDto, PARAMS> {
   Signal<List<T>> resources;
   Signal<bool> isLoading;
   Signal<String> error;

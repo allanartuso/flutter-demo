@@ -50,14 +50,16 @@ class AppRouter {
           ),
           GoRoute(
             path: Routes.users,
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: UsersContainer(),
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: UsersContainer()..onRoute(),
             ),
             routes: [
               GoRoute(
                 path: Routes.user,
                 pageBuilder: (context, state) => NoTransitionPage(
-                    child: UserContainer(id: state.pathParameters['id']!)),
+                  child: UserContainer(id: state.pathParameters['id']!)
+                    ..onRoute(),
+                ),
               ),
             ],
           ),

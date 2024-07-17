@@ -31,7 +31,10 @@ class MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.screen,
+      body: Padding(
+        child: widget.screen,
+        padding: EdgeInsets.all(32.0),
+      ),
       bottomNavigationBar: BottomNavigationBar(
           items: widget.tabs,
           onTap: (index) {

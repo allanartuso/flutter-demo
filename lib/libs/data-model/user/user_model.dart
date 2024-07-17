@@ -9,27 +9,27 @@ class UserModel extends Equatable {
   final String email;
   final String? firstName;
   final String? lastName;
-  final String? birthTime;
+  final String? birthDate;
 
   UserModel(
       {required this.id,
       required this.email,
       this.firstName,
       required this.lastName,
-      this.birthTime});
+      this.birthDate});
 
   UserModel copyWith(
       {String? id,
       String? email,
       String? firstName,
       String? lastName,
-      String? birthTime}) {
+      String? birthDate}) {
     return UserModel(
       id: id ?? this.id,
       email: email ?? this.email,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
-      birthTime: birthTime ?? this.birthTime,
+      birthDate: birthDate ?? this.birthDate,
     );
   }
 
@@ -38,7 +38,7 @@ class UserModel extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object?> get props => [id, email, firstName, lastName, birthTime];
+  List<Object?> get props => [id, email, firstName, lastName, birthDate];
 }
 
 UserModel _$UserFromJson(Map<String, dynamic> json) => UserModel(
@@ -46,8 +46,8 @@ UserModel _$UserFromJson(Map<String, dynamic> json) => UserModel(
       email: json['email'] as String,
       firstName: json['firstName'] == null ? null : json['firstName'] as String,
       lastName: json['lastName'] == null ? null : json['lastName'] as String,
-      birthTime:
-          json['birthTime'] == null ? null : (json['birthTime'] as String),
+      birthDate:
+          json['birthDate'] == null ? null : (json['birthDate'] as String),
     );
 
 Map<String, dynamic> _$UserToJson(UserModel instance) => <String, dynamic>{
@@ -55,5 +55,5 @@ Map<String, dynamic> _$UserToJson(UserModel instance) => <String, dynamic>{
       'email': instance.email,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
-      'birthTime': instance.birthTime,
+      'birthDate': instance.birthDate,
     };

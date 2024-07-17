@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
         routeInformationProvider: AppRouter.router.routeInformationProvider,
         routeInformationParser: AppRouter.router.routeInformationParser,
         routerDelegate: AppRouter.router.routerDelegate,
-        title: 'Go Router',
         debugShowCheckedModeBanner: false,
         theme: theme);
   }

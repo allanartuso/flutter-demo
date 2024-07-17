@@ -38,7 +38,7 @@ class UserProfileScreen extends StatelessWidget {
                     print(user.email);
                     print(user.firstName);
                     print(user.lastName);
-                    print(user.birthTime);
+                    print(user.birthDate);
                   },
                 ),
               );

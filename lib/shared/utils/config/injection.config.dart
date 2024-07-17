@@ -11,9 +11,11 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../libs/data-access/user/state/user_effects.dart' as _i8;
+import '../../../libs/data-access/user/state/user_effects.dart' as _i9;
+import '../../../libs/data-access/user/user_facade.dart' as _i10;
 import '../../../libs/data-access/user/user_repository.dart' as _i5;
 import '../../../libs/data-access/users/state/users_effects.dart' as _i7;
+import '../../../libs/data-access/users/users_facade.dart' as _i8;
 import '../../../libs/data-access/users/users_repository.dart' as _i6;
 import '../../data-access/rest/rest_service.dart' as _i4;
 import 'app_config.dart' as _i3;
@@ -37,8 +39,12 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i6.UsersRepository(httpService: gh<_i4.HttpService>()));
     gh.singleton<_i7.UsersEffects>(
         () => _i7.UsersEffects(repository: gh<_i6.UsersRepository>()));
-    gh.singleton<_i8.UserEffects>(
-        () => _i8.UserEffects(repository: gh<_i5.UserRepository>()));
+    gh.singleton<_i8.UsersFacade>(
+        () => _i8.UsersFacade(effects: gh<_i7.UsersEffects>()));
+    gh.singleton<_i9.UserEffects>(
+        () => _i9.UserEffects(repository: gh<_i5.UserRepository>()));
+    gh.singleton<_i10.UserFacade>(
+        () => _i10.UserFacade(effects: gh<_i9.UserEffects>()));
     return this;
   }
 }

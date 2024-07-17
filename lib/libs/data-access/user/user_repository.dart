@@ -1,10 +1,14 @@
 import 'package:flutter_application_1/shared/data-access/rest/rest_service.dart';
 import 'package:flutter_application_1/shared/data-model/form/form_repository.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data-model/user/user_model.dart';
 import 'dart:async';
 
-@singleton
+final userRepositoryProvider = Provider<UserRepository>((ref) {
+  final httpService = ref.read(httpServiceProvider);
+  return UserRepository(httpService);
+});
+
 class UserRepository implements FormRepository<User, User> {
   final String url = 'users';
   final HttpService httpService;

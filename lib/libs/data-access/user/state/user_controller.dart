@@ -1,23 +1,28 @@
 import 'package:flutter_application_1/libs/data-access/user/state/user_state.dart';
 import 'package:flutter_application_1/libs/data-access/user/user_repository.dart';
 import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
-import 'package:flutter_application_1/shared/utils/store/form/models/form_handlers.dart';
-import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-@singleton
-class UserController extends GetxController {
+final userControllerProvider =
+    StateNotifierProvider<UserController, UserState>((ref) {
+  return UserController(ref.read(userRepositoryProvider));
+});
+
+class UserController extends StateNotifier<UserState> {
   final UserRepository userRepository;
 
-  UserController({required this.userRepository});
+  UserController(this.userRepository) : super(UserState());
 
-  final UserState state = UserState();
-
-  void loadResource(String id) async {
-    FormEventHandlers.load(state, userRepository, id);
+  Future<void> loadResource(String id) async {
+    try {
+      final user = await userRepository.loadResource(id);
+      state = UserState(resource: user);
+    } catch (e) {
+      // Handle error appropriately
+      print('Error loading user: $e');
+      state = UserState(error: 'Error loading user');
+    }
   }
 
-  void saveResource(User user) async {
-    FormEventHandlers.save(state, userRepository, user);
-  }
+  void saveResource(User user) {}
 }

@@ -3,7 +3,6 @@ import 'package:form_builder_validators/localization/l10n.dart';
 import 'router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
   final ThemeData theme;
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp.router(
+    return MaterialApp.router(
       routeInformationProvider: AppRouter.router.routeInformationProvider,
       routeInformationParser: AppRouter.router.routeInformationParser,
       routerDelegate: AppRouter.router.routerDelegate,

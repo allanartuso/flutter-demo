@@ -1,10 +1,20 @@
 import 'package:flutter_application_1/shared/data-access/rest/base_model.dart';
 import 'package:flutter_application_1/shared/utils/config/app_config.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
+
+final appConfigProvider = Provider<AppConfig>((ref) {
+  return AppConfig();
+});
+
+final httpServiceProvider = Provider<HttpService>((ref) {
+  final httpService = ref.read(appConfigProvider);
+  return HttpService(httpService);
+});
 
 @singleton
 class HttpService {

@@ -1,18 +1,23 @@
-import 'package:flutter_application_1/libs/data-access/users/state/users_state.dart';
 import 'package:flutter_application_1/libs/data-access/users/users_repository.dart';
-import 'package:flutter_application_1/shared/utils/store/list/models/list_handlers.dart';
-import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_application_1/libs/data-model/user/user_model.dart';
+import 'package:flutter_application_1/shared/data-model/common/request_options.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-@singleton
-class UsersController extends GetxController {
-  final UsersRepository usersRepository;
+part 'users_controller.g.dart';
 
-  UsersController({required this.usersRepository});
+@riverpod
+class AsyncUsers extends _$AsyncUsers {
+  @override
+  build() {
+    return {};
+  }
 
-  final UsersState state = UsersState();
+  Future<void> loadResources() async {
+    final usersRepository = ref.read(usersRepositoryProvider);
 
-  void loadResources() async {
-    ListEventHandlers.load(state, usersRepository);
+    state = await AsyncValue.guard(() async {
+      return await usersRepository
+          .loadResources(RequestOptions.defaultRequestOptions<UserFilter>());
+    });
   }
 }
